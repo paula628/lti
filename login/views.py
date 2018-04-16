@@ -4,12 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(TemplateView):
-    template_name = 'main/index.html'
+    template_name = 'index.html'
 
 
 class LTIAssignment1View(LTIAuthMixin, LoginRequiredMixin, TemplateView):
 
-    template_name = 'main/assignment.html'
+    template_name = 'assignment.html'
 
     def get_context_data(self, **kwargs):
         print self, kwargs
@@ -22,7 +22,7 @@ class LTIAssignment1View(LTIAuthMixin, LoginRequiredMixin, TemplateView):
 
 class LTIAssignment2View(LTIAuthMixin, LoginRequiredMixin, TemplateView):
 
-    template_name = 'main/assignment.html'
+    template_name = 'assignment.html'
 
     def get_context_data(self, **kwargs):
         return {
