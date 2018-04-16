@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'lti_provider',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,3 +121,36 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = [
+  'django.contrib.auth.backends.ModelBackend',
+  'lti_provider.auth.LTIBackend',
+]
+
+PYLTI_CONFIG = {
+    'consumers': {
+        '4': {
+            'secret': '555'
+        }
+    }
+}
+
+
+LTI_TOOL_CONFIGURATION = {
+    'title': 'Sample LTI Tool',
+    'description': 'This tool includes launch, navigation and assignments',
+    'launch_url': 'lti/',
+    'embed_url': '',  # @todo - add an editor embed example
+    'embed_icon_url': '',
+    'embed_tool_id': '',
+    'landing_url': '/',
+    'navigation': True,
+    'new_tab': True,
+    'course_aware': False,
+    'frame_width': 1024,
+    'frame_height': 1024,
+    #'assignments': {
+    #    '1': '/assignment/1/',
+    #    '2': '/assignment/2/',
+    #}
+}
