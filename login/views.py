@@ -1,6 +1,8 @@
 from django.views.generic.base import TemplateView
 from lti_provider.mixins import LTIAuthMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 class IndexView(TemplateView):
