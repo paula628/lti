@@ -25,7 +25,7 @@ SECRET_KEY = '0^q9&^oblkc28287hb-2ub3pnyo9nub@-@=m56)g*mn_u8m@14'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['escpdigital.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ["escpdigital.pythonanywhere.com", 'https://escpeurope.blackboard.com/', "localhost"]
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'lti_provider',
-    'login',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,6 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+SECURE_SSL_REDIRECT = True
+X_FRAME_OPTIONS = 'ALLOWALL'
+CSRF_TRUSTED_ORIGINS = ['escpeurope.blackboard.com']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_HTTPONLY = True
 
 LOGIN_REDIRECT_URL = 'home'
 
@@ -131,8 +137,8 @@ AUTHENTICATION_BACKENDS = [
 
 PYLTI_CONFIG = {
     'consumers': {
-        '4': {
-            'secret': '555'
+        'escpdigital.pythonanywhere.com': {
+            'secret': 'secret'
         }
     }
 }
@@ -147,7 +153,7 @@ LTI_TOOL_CONFIGURATION = {
     'embed_tool_id': '',
     'landing_url': '/',
     'navigation': True,
-    'new_tab': True,
+    'new_tab': False,
     'course_aware': False,
     'frame_width': 1024,
     'frame_height': 1024,

@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from . import views
 
 urlpatterns = [
-    url(r'^$', xframe_options_exempt(TemplateView.as_view(template_name='home.html')), name='home'),
+    #url(r'^$', xframe_options_exempt(TemplateView.as_view(template_name='home.html')), name='home'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^lti/', include('lti_provider.urls')),
